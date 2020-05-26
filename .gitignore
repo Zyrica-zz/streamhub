@@ -1,6 +1,5 @@
 .idea/
 dist/
-.babelrc
 .DS_Store
 node_modules
 public/bundle.*
