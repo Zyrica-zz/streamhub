@@ -3,7 +3,7 @@
   let streams = []
   async function init() {
     const { data } = await get('/api')
-    streams = data.streams
+    streams = data
     console.log(streams[0].channel)
   }
   init()

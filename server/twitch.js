@@ -9,5 +9,12 @@ const config = {
 }
 
 export default async function() {
-  return await get(url, config)
+  let streams
+  try {
+    const result = await get(url, config)
+    streams = result.data.streams
+  } catch(e) {
+    console.error('errror getting streams from twitch', e)
+  }
+  return streams
 }
