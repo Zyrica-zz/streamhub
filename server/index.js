@@ -1,6 +1,12 @@
+import { config } from 'dotenv'
 import path from 'path'
 import express from 'express'
 import api from './api'
+
+// Load .env
+config()
+
+console.log(process.env.twitch_client_id)
 
 const paths = {
   public: path.resolve(__dirname, '../public')
