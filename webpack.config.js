@@ -59,6 +59,7 @@ module.exports = {
 				target: 'http://localhost:31337',
 				changeOrigin: true
 			}
-		}
+		},
+		quiet: true,
 	},
 };

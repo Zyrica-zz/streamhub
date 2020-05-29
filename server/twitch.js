@@ -1,6 +1,5 @@
 import get from 'axios'
 
-const url = `https://api.twitch.tv/kraken/streams`
 const config = {
   headers: {
     'Client-ID': 'shq37rasv1oaqfb1jnzvh12bilkjgj',
@@ -8,10 +7,15 @@ const config = {
   }
 }
 
-export default async function() {
+export default async function(query) {
+  query = encodeURIComponent(query)
+  const url = query
+    ? `https://api.twitch.tv/kraken/search/streams?query=${query}&limit=100`
+    : `https://api.twitch.tv/kraken/streams?limit=100`
   let streams
   try {
     const result = await get(url, config)
+    console.log('twitch', result.data.streams.length, result.data._total)
     streams = result.data.streams
   } catch(e) {
     console.error('errror getting streams from twitch', e)

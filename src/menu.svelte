@@ -1,6 +1,13 @@
+<script>
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+
+  let query = ''
+  $: dispatch('change', query)
+</script>
 
 <div class="menu">
-  <input placeholder="Search" />
+  <input placeholder="Search" bind:value={query} />
   <button>
     <img src="/search.png" alt="Search" width="18px" />
   </button>
