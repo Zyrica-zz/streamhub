@@ -9,14 +9,22 @@
  */
   import { get } from 'axios'
   import getTwitchStreams from '../server/twitch'
+  import getYoutubeStreams from '../server/youtube'
   import Menu from './menu.svelte'
 
   let twitchStreams = []
-  $: streams = twitchStreams.map(stream => ({
+  let youtubeStreams = []
+  $: streams = (twitchStreams.map(stream => ({
     source: 'twitch',
     name: stream.channel.name,
     viewers: stream.viewers,
-  }))
+  })).concat(youtubeStreams.map(stream => ({
+    source: 'youtube',
+    name: stream.snippet.channelTitle,
+    viewers: Number(stream.liveStreamingDetails.concurrentViewers),
+  })))).sort((a, b) => {
+    return b.viewers-a.viewers
+  })
 
   let query = ''
   let isSearching = false
@@ -27,7 +35,10 @@
       searchAgain = true
     } else {
       isSearching = true
-      twitchStreams = await getTwitchStreams(query)
+      const twitchPromise = getTwitchStreams(query)
+      const youtubePromise = getYoutubeStreams(query)
+      youtubeStreams = await youtubePromise
+      twitchStreams = await twitchPromise
       isSearching = false
       if (searchAgain) {
         searchAgain = false
@@ -44,17 +55,23 @@
 </script>
 
 <Menu on:change={onMenuChange} />
-<table>
-  {#each streams as {source, name, viewers}}
-      <tr>
-        <td>{source}</td>
-        <td>{name}</td>
-        <td>{viewers}</td>
-      </tr>
-  {/each}
-</table>
+<div class="streams">
+  <table>
+    {#each streams as {source, name, viewers}}
+        <tr>
+          <td>{source}</td>
+          <td>{name}</td>
+          <td>{viewers}</td>
+        </tr>
+    {/each}
+  </table>
+</div>
 
 <style>
+  .streams {
+    display: flex;
+    justify-content: center;
+  }
   td {
     padding: 5px;
   }
