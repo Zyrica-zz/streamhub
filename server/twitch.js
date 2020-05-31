@@ -15,7 +15,6 @@ export default async function(query) {
   let streams
   try {
     const result = await get(url, config)
-    console.log('twitch', result.data.streams.length, result.data._total)
     streams = result.data.streams
   } catch(e) {
     console.error('errror getting streams from twitch', e)
