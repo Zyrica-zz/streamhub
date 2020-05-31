@@ -2,7 +2,6 @@ import path from 'path'
 import express from 'express'
 import api from './api'
 
-
 const paths = {
   public: path.resolve(__dirname, '../public')
 }

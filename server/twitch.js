@@ -1,10 +1,14 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import get from 'axios'
 
 const refreshRate = 60*1000 // ms
 
+console.log(process.env)
 const config = {
   headers: {
-    'Client-ID': 'shq37rasv1oaqfb1jnzvh12bilkjgj',
+    'Client-ID': process.env.twitch_client_id,
     'Accept': 'application/vnd.twitchtv.v5+json'
   }
 }
