@@ -2,6 +2,7 @@ import { Router } from 'express'
 import createCache from './cache'
 import twitch from './twitch'
 import youtube from './youtube'
+import mixer from './mixer'
 
 const router =  new Router()
 
@@ -13,16 +14,17 @@ function byViewers(a, b) {
 
 const cache = {
   getTwitch: createCache(twitch, oneMinute),
-  get twitch() { return this.getTwitch() },
   getYoutube: createCache(youtube, 5*oneMinute),
-  get youtube() { return this.getYoutube() },
-  get all() {
-    return [...this.twitch, ...this.youtube].sort(byViewers)
-  }
+  getMixer: createCache(mixer, oneMinute),
+  getAll: () => [
+    ...cache.getTwitch(),
+    ...cache.getYoutube(),
+    ...cache.getMixer()
+  ].sort(byViewers)
 }
 
 router.use('*', (req, res) => {
-  res.send(cache.all)
+  res.send(cache.getAll())
 })
 
 export default router
