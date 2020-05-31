@@ -11,14 +11,7 @@
   let streams = []
   const init = async () => {
     const { data } = await get('/api')
-    streams = data.map(({channel, viewers})=> {
-      return {
-        source: 'twitch',
-        name: channel.name,
-        viewers,
-      }
-    })
-    console.log(data[0])
+    streams = data
   }
   init()
 </script>

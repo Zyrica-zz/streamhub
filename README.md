@@ -10,4 +10,5 @@ The frontend dev server uses a proxy to route:
 - Create a `.env` file in root dir
 - Each line represent a environment variable with the following syntaax `variable=value`
 ## Variables
-- `twitch_client_id` used to access twitch
+- [twitch_client_id](https://dev.twitch.tv/console/apps)
+- [youtube_api_key](https://console.cloud.google.com/apis/credentials?project=substreams)
