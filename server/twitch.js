@@ -2,7 +2,6 @@ import get from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const refreshRate = 60*1000 // ms
 const config = {
   headers: {
     'Client-ID': process.env.twitch_client_id,
@@ -11,7 +10,7 @@ const config = {
 }
 
 let streams = []
-async function getStreams() {
+export default async function getStreams() {
   const url = `https://api.twitch.tv/kraken/streams?limit=50`
   const { data }= await get(url, config)
   streams = data.streams.map(({channel, viewers})=> {
@@ -21,15 +20,5 @@ async function getStreams() {
       viewers,
     }
   })
-}
-
-let last = new Date().getTime()
-getStreams()
-export default () => {
-  const now = new Date().getTime()
-  if (now - last > refreshRate) {
-    last = now
-    getStreams()
-  }
   return streams
 }
