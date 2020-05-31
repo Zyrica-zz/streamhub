@@ -8,11 +8,21 @@
       })
  */
   import { get } from 'axios'
-  import Menu from './menu.svelte'
-
+  let streams = []
+  const init = async () => {
+    const { data } = await get('/api')
+    streams = data.map(({channel, viewers})=> {
+      return {
+        source: 'twitch',
+        name: channel.name,
+        viewers,
+      }
+    })
+    console.log(data[0])
+  }
+  init()
 </script>
 
-<Menu on:change={onMenuChange} />
 <div class="streams">
   <table>
     {#each streams as {source, name, viewers}}

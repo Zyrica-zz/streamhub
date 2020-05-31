@@ -1,5 +1,7 @@
 import get from 'axios'
 
+const refreshRate = 60*1000 // ms
+
 const config = {
   headers: {
     'Client-ID': 'shq37rasv1oaqfb1jnzvh12bilkjgj',
@@ -7,11 +9,8 @@ const config = {
   }
 }
 
-export default async function(query) {
-  query = encodeURIComponent(query)
-  const url = query
-    ? `https://api.twitch.tv/kraken/search/streams?query=${query}&limit=100`
-    : `https://api.twitch.tv/kraken/streams?limit=100`
+async function getStreams() {
+  const url = `https://api.twitch.tv/kraken/streams?limit=50`
   let streams
   try {
     const result = await get(url, config)
@@ -20,4 +19,15 @@ export default async function(query) {
     console.error('errror getting streams from twitch', e)
   }
   return streams
+}
+
+let streamsPromise
+let last = new Date().getTime()
+
+export default async function() {
+  const now = new Date().getTime()
+  if (now - last > refreshRate) {
+    streamsPromise = getStreams()
+  }
+  return await streamsPromise
 }
