@@ -28,7 +28,7 @@ async function getStreams() {
   if (process.env.PORT) {
     let response = await get(searchUrl)
     result = response.data.items
-    const ids = items.map(stream => stream.id.videoId).join()
+    const ids = result.map(stream => stream.id.videoId).join()
     response = await get(`${videosUrl}&id=${ids}`)
     response.data.items.forEach(({id, liveStreamingDetails}) => {
       const stream = result.find(stream => stream.id.videoId === id)
