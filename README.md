@@ -20,7 +20,7 @@ The frontend dev server uses a proxy to route:
 https://dev.twitch.tv/docs/v5
 <details>
   <summary>Example stream</summary>
-  ```json
+  ~~~json
   {
      "_id":38414053200,
      "game":"League of Legends",
@@ -68,12 +68,12 @@ https://dev.twitch.tv/docs/v5
         "privacy_options_enabled":false
      }
   }
-  ```
+  ~~~
 </details>
 ## Youtube
 <details>
   <summary>Example stream</summary>
-  ```json
+  ~~~json
   {
      "kind":"youtube#searchResult",
      "etag":"0zkQb93jCg8yy0Q5yXZiUPBmazo",
@@ -114,12 +114,12 @@ https://dev.twitch.tv/docs/v5
         "activeLiveChatId":"Cg0KC3RkWURxbU9kb2xnKicKGFVDbVFLNTJ4WXRkZWc3RVlpUWhxRWVaQRILdGRZRHFtT2RvbGc"
      }
   }
-  ```
+  ~~~
 </details>
 ## Mixer
 <details>
   <summary>Example stream</summary>
-  ```json
+  ~~~json
   {
      "id":14804231,
      "name":"Ламповые посиделки ",
@@ -143,5 +143,5 @@ https://dev.twitch.tv/docs/v5
         "availableAt":null
      }
   }
-  ```
+  ~~~
 </details>
