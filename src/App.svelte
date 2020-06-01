@@ -14,26 +14,57 @@
     streams = data
   }
   init()
+
+  function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1)
+  }
 </script>
 
 <div class="streams">
-  <table>
-    {#each streams as {source, name, viewers}}
-        <tr>
-          <td>{source}</td>
-          <td>{name}</td>
-          <td>{viewers}</td>
-        </tr>
-    {/each}
-  </table>
+  {#each streams as {source, name, viewers}}
+    <div class="stream">
+      <div class="source">
+        <img class="logo" src={`logos/${source}.png`} alt={capitalize(source)} />
+      </div>
+      <div class="name">
+        {name}
+      </div>
+      <div class="viewers">
+        {viewers}
+      </div>
+    </div>
+  {/each}
 </div>
 
 <style>
   .streams {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .stream {
+    display: flex;
+  }
+  .stream > div {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 5px;
+  }
+  .source {
+    width: 30px;
     justify-content: center;
   }
-  td {
-    padding: 5px;
+  .logo {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .name {
+    width: 300px;
+  }
+  .viewers {
+    width: 100px;
+    text-align: right;
   }
 </style>
