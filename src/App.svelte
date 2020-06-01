@@ -53,16 +53,19 @@
     align-items: center;
   }
   .stream {
+    width: 100%;
     display: flex;
     cursor: pointer;
+    justify-content: center;
     margin-bottom: 1px;
   }
-  .stream:hover {
-    background-color: rgb(42,42,48);
+  @media (hover: hover) {
+    .stream:hover {
+      background-color: rgb(42,42,48);
+    }
   }
   .favourite {
     background-color: rgb(28,28,32);
-
   }
   .stream > div {
     display: flex;
@@ -83,7 +86,8 @@
     max-height: 64px;
   }
   .name {
-    width: 300px;
+    max-width: 300px;
+    flex: 1;
   }
   .stream > .viewers > span{
     width: 60px;
