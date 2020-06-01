@@ -1,4 +1,4 @@
-const enabled = document.location.host === 'http://www.streamhub.gg';
+const enabled = document.location.host === 'www.streamhub.gg';
 const id = 'UA-122236740-5';
 const url = `https://www.googletagmanager.com/gtag/js?id=${id}`;
 
