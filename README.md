@@ -20,6 +20,7 @@ The frontend dev server uses a proxy to route:
 https://dev.twitch.tv/docs/v5
 <details>
   <summary>Example stream</summary>
+  
   ~~~json
   {
      "_id":38414053200,
@@ -73,6 +74,7 @@ https://dev.twitch.tv/docs/v5
 ## Youtube
 <details>
   <summary>Example stream</summary>
+  
   ~~~json
   {
      "kind":"youtube#searchResult",
@@ -119,6 +121,7 @@ https://dev.twitch.tv/docs/v5
 ## Mixer
 <details>
   <summary>Example stream</summary>
+  
   ~~~json
   {
      "id":14804231,
