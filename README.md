@@ -71,7 +71,9 @@ https://dev.twitch.tv/docs/v5
   }
   ~~~
 </details>
+
 ## Youtube
+https://developers.google.com/youtube/v3/docs/search/list
 <details>
   <summary>Example stream</summary>
   
@@ -118,7 +120,9 @@ https://dev.twitch.tv/docs/v5
   }
   ~~~
 </details>
+
 ## Mixer
+https://dev.mixer.com/rest/index.html
 <details>
   <summary>Example stream</summary>
   
