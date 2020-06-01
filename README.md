@@ -1,4 +1,4 @@
-# Stream Hub
+# [Stream Hub](https://www.streamhub.gg)
 - `npm i` - to install all dependencies
 - `npm run dev:server` - to start the node backend server @:31337
 - `npm run dev:client` - to start the frontend dev server @:1337
