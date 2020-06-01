@@ -1,11 +1,14 @@
 <script>
   import { get } from 'axios'
+
   let streams = []
-  const init = async () => {
+  async function getStreams() {
     const { data } = await get('/api')
     streams = data
   }
-  init()
+
+  getStreams()
+  setInterval(getStreams, 30*1000)
 
   function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1)
