@@ -19,7 +19,7 @@ The frontend dev server uses a proxy to route:
 ## Twitch
 https://dev.twitch.tv/docs/v5
 <details>
-  <summary>Example stream</summary>
+  <summary>Example data</summary>
   
   ~~~json
   {
@@ -75,7 +75,7 @@ https://dev.twitch.tv/docs/v5
 ## Youtube
 https://developers.google.com/youtube/v3/docs/search/list
 <details>
-  <summary>Example stream</summary>
+  <summary>Example data</summary>
   
   ~~~json
   {
@@ -124,7 +124,7 @@ https://developers.google.com/youtube/v3/docs/search/list
 ## Mixer
 https://dev.mixer.com/rest/index.html
 <details>
-  <summary>Example stream</summary>
+  <summary>Example data</summary>
   
   ~~~json
   {
