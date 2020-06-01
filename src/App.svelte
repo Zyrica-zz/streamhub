@@ -65,6 +65,8 @@
   }
   .viewers {
     width: 100px;
+    justify-content: right;
+    align-items: end;
     text-align: right;
   }
 </style>

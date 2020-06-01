@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import createCache from './cache'
-import twitch from './twitch'
-import youtube from './youtube'
-import mixer from './mixer'
+import twitch from './providers/twitch'
+import youtube from './providers/youtube'
+import mixer from './providers/mixer'
 
 const router =  new Router()
 
