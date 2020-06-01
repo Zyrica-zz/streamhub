@@ -18,6 +18,7 @@ export default async function getStreams() {
       source: 'twitch',
       name: channel.name,
       viewers,
+      avatar: channel.logo,
     }
   })
   return streams

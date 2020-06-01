@@ -21,10 +21,13 @@
 </script>
 
 <div class="streams">
-  {#each streams as {source, name, viewers}}
+  {#each streams as {source, name, viewers, avatar}}
     <div class="stream">
       <div class="source">
         <img class="logo" src={`logos/${source}.png`} alt={capitalize(source)} />
+      </div>
+      <div class="avatar">
+        <img src={avatar} alt={`${name}'s avatar.`} />
       </div>
       <div class="name">
         {name}
@@ -59,6 +62,10 @@
   .logo {
     max-width: 30px;
     max-height: 30px;
+  }
+  .avatar > img {
+    max-width: 64px;
+    max-height: 64px;
   }
   .name {
     width: 300px;
