@@ -1,12 +1,4 @@
 <script>
-/*
-      const result = new Twitch.Embed(''+id, {
-        width,
-        height,
-        channel: channel.name,
-        layout: 'video',
-      })
- */
   import { get } from 'axios'
   let streams = []
   const init = async () => {
@@ -18,11 +10,25 @@
   function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1)
   }
+
+  let favourites = new Set()
+  function toggleFavourite(name) {
+    if (favourites.has(name)) {
+      favourites.delete(name)
+    } else {
+      favourites.add(name)
+    }
+    favourites = favourites
+  }
 </script>
 
 <div class="streams">
   {#each streams as {source, name, viewers, avatar}}
-    <div class="stream">
+    <div
+      class="stream"
+      class:favourite="{favourites.has(name)}"
+      on:click={toggleFavourite(name)}
+    >
       <div class="source">
         <img class="logo" src={`logos/${source}.png`} alt={capitalize(source)} />
       </div>
@@ -33,7 +39,7 @@
         {name}
       </div>
       <div class="viewers">
-        {viewers}
+        <span>{viewers}</span>
       </div>
     </div>
   {/each}
@@ -48,6 +54,15 @@
   }
   .stream {
     display: flex;
+    cursor: pointer;
+    margin-bottom: 1px;
+  }
+  .stream:hover {
+    background-color: rgb(42,42,48);
+  }
+  .favourite {
+    background-color: rgb(28,28,32);
+
   }
   .stream > div {
     display: flex;
@@ -70,10 +85,9 @@
   .name {
     width: 300px;
   }
-  .viewers {
-    width: 100px;
-    justify-content: right;
-    align-items: end;
+  .stream > .viewers > span{
+    width: 60px;
     text-align: right;
   }
+
 </style>
