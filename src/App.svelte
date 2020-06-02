@@ -1,10 +1,12 @@
 <script>
   import { get } from 'axios'
+  import ga from './google-analytics'
 
   import { toggleFavourite, isFavourite } from './favourites-store'
 
   let streams = []
   async function getStreams() {
+    ga('list', 'streams', 'top-50')
     const { data } = await get('/api')
     streams = data
   }
