@@ -18,11 +18,11 @@
 </script>
 
 <div class="streams">
-  {#each streams as {source, name, viewers, avatar}}
+  {#each streams as {source, name, viewers, avatar, id}}
     <div
       class="stream"
-      class:favourite="{$isFavourite(name)}"
-      on:click={toggleFavourite(name)}
+      class:favourite="{$isFavourite(id)}"
+      on:click={toggleFavourite(id)}
     >
       <div class="source">
         <img class="logo" src={`logos/${source}.png`} alt={capitalize(source)} />
@@ -34,7 +34,7 @@
         {name}
       </div>
       <div class="viewers">
-        <span>{viewers}</span>
+        <span>{id}</span>
       </div>
     </div>
   {/each}

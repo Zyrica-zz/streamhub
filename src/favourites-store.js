@@ -17,6 +17,7 @@ export function toggleFavourite(id) {
   }
   save()
 }
+
 export const isFavourite = derived(
   readableFavorites,
   favourites => id => favourites.has(id)

@@ -53,10 +53,11 @@ export default async function getStreams() {
   streams = result
     .filter(s => s.channel)
     .map(({liveStreamingDetails, snippet, channel}) => ({
-    source: 'youtube',
-    name: snippet.channelTitle,
-    viewers: liveStreamingDetails.concurrentViewers,
-    avatar: channel.thumbnails.default.url,
+      source: 'youtube',
+      name: snippet.channelTitle,
+      viewers: liveStreamingDetails.concurrentViewers,
+      avatar: channel.thumbnails.default.url,
+      id: snippet.channelId,
   }))
   return streams
 }

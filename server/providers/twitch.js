@@ -19,6 +19,7 @@ export default async function getStreams() {
       name: channel.name,
       viewers,
       avatar: channel.logo,
+      id: channel._id,
     }
   })
   return streams

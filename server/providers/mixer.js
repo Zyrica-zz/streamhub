@@ -9,6 +9,7 @@ export default async function() {
     name: token,
     viewers: viewersCurrent,
     avatar: `https://mixer.com/api/v1/users/${userId}/avatar?w=64&h=64`,
+    id: userId
   }))
   return streams
 }
