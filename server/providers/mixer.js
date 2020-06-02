@@ -3,6 +3,7 @@ import get from 'axios'
 const url = 'https://mixer.com/api/v1/delve/topStreams'
 
 export default async function() {
+  console.log('Mixer', 'Get streams')
   const { data }= await get(url)
   const streams = data.map(({token, viewersCurrent, userId}) => ({
     source: 'mixer',
