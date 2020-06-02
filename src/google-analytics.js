@@ -24,8 +24,8 @@ if (enabled) {
 }
 
 export default async function(action, category, label, value) {
-  const gtag = await gtagPromise
-  if (gtag && enabled) {
+  try {
+    const gtag = await gtagPromise
     const event = {
       event_category: category,
     };
@@ -36,7 +36,7 @@ export default async function(action, category, label, value) {
       event.event_value = value;
     }
     gtag('event', action, event);
-  } else {
+  } catch {
     console.log('Google analytics', action, category, label, value);
   }
 }
