@@ -2,6 +2,12 @@ const enabled = document.location.host === 'www.streamhub.gg';
 const id = 'UA-122236740-5';
 const url = `https://www.googletagmanager.com/gtag/js?id=${id}`;
 
+let resolveGtag
+let gtagPromise = new Promise(async (resolve, reject) => {
+  gtagPromise.resolve = resolve
+  setTimeout(reject, 10000)
+})
+
 if (enabled) {
   const onload = () => {
     window.dataLayer = window.dataLayer || [];
@@ -9,7 +15,7 @@ if (enabled) {
     gtag('js', new Date());
 
     gtag('config', id);
-    window.gtag = gtag;
+    resolveGtag(gtag)
   };
   const script = document.createElement('script');
   script.src = url;
@@ -17,8 +23,9 @@ if (enabled) {
   document.head.appendChild(script);
 }
 
-export default function(action, category, label, value) {
-  if (enabled) {
+export default async function(action, category, label, value) {
+  const gtag = await gtagPromise
+  if (gtag && enabled) {
     const event = {
       event_category: category,
     };
@@ -28,7 +35,7 @@ export default function(action, category, label, value) {
     if (value) {
       event.event_value = value;
     }
-    window.gtag('event', action, event);
+    gtag('event', action, event);
   } else {
     console.log('Google analytics', action, category, label, value);
   }
