@@ -4,7 +4,7 @@ const url = `https://www.googletagmanager.com/gtag/js?id=${id}`;
 
 let resolveGtag
 let gtagPromise = new Promise(async (resolve, reject) => {
-  gtagPromise.resolve = resolve
+  resolveGtag = resolve
   setTimeout(reject, 10000)
 })
 
