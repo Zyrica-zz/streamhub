@@ -1,6 +1,8 @@
 <script>
   import { get } from 'axios'
 
+  import { toggleFavourite, isFavourite } from './favourites-store'
+
   let streams = []
   async function getStreams() {
     const { data } = await get('/api')
@@ -13,23 +15,13 @@
   function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1)
   }
-
-  let favourites = new Set()
-  function toggleFavourite(name) {
-    if (favourites.has(name)) {
-      favourites.delete(name)
-    } else {
-      favourites.add(name)
-    }
-    favourites = favourites
-  }
 </script>
 
 <div class="streams">
   {#each streams as {source, name, viewers, avatar}}
     <div
       class="stream"
-      class:favourite="{favourites.has(name)}"
+      class:favourite="{$isFavourite(name)}"
       on:click={toggleFavourite(name)}
     >
       <div class="source">
