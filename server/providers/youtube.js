@@ -29,7 +29,7 @@ const channelsUrl = baseUrl
 let streams = []
 export default async function getStreams() {
   console.log('Youtube', 'Get streams')
-  let result = localhostData
+  let result
   if (process.env.PORT) {
     let response = await get(searchUrl)
     result = response.data.items
@@ -48,6 +48,7 @@ export default async function getStreams() {
       stream.channel = snippet
     })
   }
+  if (!result) result = localhostData
 
   streams = result
     .filter(s => s.channel)

@@ -34,7 +34,7 @@
         {name}
       </div>
       <div class="viewers">
-        <span>{id}</span>
+        <span>{viewers}</span>
       </div>
     </div>
   {/each}
