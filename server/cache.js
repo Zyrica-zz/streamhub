@@ -11,6 +11,7 @@ export default function createCache(getter, duration) {
   function get() {
     const now = new Date().getTime()
     if (now - lastCall >= duration) {
+      lastCall = now()
       updateData()
     }
     return data
