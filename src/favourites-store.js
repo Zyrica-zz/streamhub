@@ -1,33 +1,41 @@
 import { derived, readable } from 'svelte/store'
+import { streams } from './streams-store'
 
 const key = 'favourites'
 
-const favourites = loadFromLocalStorage()
+const fav = loadFromLocalStorage()
 
 let save
-const readableFavorites = readable(favourites, set => {
+export const favoriteIds = readable([...fav], set => {
   save = () => {
     saveToLocalStorage()
-    set(favourites)
+    set([...fav])
   }
 })
 
 export function toggleFavourite(id) {
-  if (favourites.has(id)) {
-    favourites.delete(id)
+  if (fav.has(id)) {
+    fav.delete(id)
   } else {
-    favourites.add(id)
+    fav.add(id)
   }
   save()
 }
 
+export const favorites = derived(
+  [streams, favoriteIds],
+  ([$streams, $favoriteIds]) => $favoriteIds
+    .map(id => $streams.find(stream => stream.id === id))
+    .filter(fav => fav)
+)
+
 export const isFavourite = derived(
-  readableFavorites,
-  favourites => id => favourites.has(id)
+  favoriteIds,
+  () => id => fav.has(id)
 )
 
 function saveToLocalStorage() {
-  localStorage.setItem(key, JSON.stringify([...favourites]))
+  localStorage.setItem(key, JSON.stringify([...fav]))
 }
 function loadFromLocalStorage() {
   let json = localStorage.getItem(key)
