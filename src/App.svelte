@@ -10,6 +10,8 @@
 
 <style>
   .content {
+    width: 100%;
     display: flex;
+    overflow: hidden;
   }
 </style>

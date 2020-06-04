@@ -8,25 +8,33 @@
   }
 </script>
 
-<div class="streams">
-  {#each $streams as {source, name, viewers, avatar, id}}
-    <Stream
-      isFavourite={$isFavourite(id)}
-      source={source}
-      name={name}
-      viewers={viewers}
-      avatar={avatar}
-      on:click={toggleFavourite(id)}
-    />
-  {/each}
+<div class="container">
+  <div class="streams">
+    {#each $streams as {source, name, viewers, avatar, id}}
+      <Stream
+        isFavourite={$isFavourite(id)}
+        source={source}
+        name={name}
+        viewers={viewers}
+        avatar={avatar}
+        on:click={toggleFavourite(id)}
+      />
+    {/each}
+  </div>
 </div>
 
 <style>
+  .container {
+    min-width: 350px;
+    display: block;
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+  }
   .streams {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: end;
   }
-
 </style>
