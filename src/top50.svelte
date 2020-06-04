@@ -31,18 +31,6 @@
     height: 100vh;
     overflow: auto;
   }
-  .container::-webkit-scrollbar {
-    width: 10px;
-  }
-  .container::-webkit-scrollbar-track {
-    background: transparent;
-    border: 1px solid #222;
-  }
-  .container::-webkit-scrollbar-thumb {
-    background: green;
-    background: #222;
-    border-radius: 5px;
-  }
 
   .streams {
     display: flex;
