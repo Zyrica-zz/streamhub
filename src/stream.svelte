@@ -6,9 +6,6 @@
   }
 
   const dispatch = createEventDispatcher();
-  function onClick() {
-    dispatch('click');
-  }
 
   export let isFavourite = false
   export let source
@@ -20,7 +17,7 @@
 <div
   class="stream"
   class:favourite="{isFavourite}"
-  on:click={onClick}
+  on:click={() => dispatch('click')}
 >
   <div class="source">
     <img class="logo" src={`logos/${source}.png`} alt={capitalize(source)} />

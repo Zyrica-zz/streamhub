@@ -1,39 +1,39 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+  import Logo from './logo.svelte'
+
+  const dispatch = createEventDispatcher();
+  function select(name) {
+    dispatch('select', name)
+  }
+
+  export let selected = ''
 </script>
 
 <div class="menu">
+  <img src="logo.png" alt="www.streamhub.gg" height="32px" />
+  <div on:click={() => dispatch('select', name)}>Top 50</div>
+  <div>Favourites</div>
+  <div>Player</div>
 </div>
 
 <style>
   .menu {
     display: flex;
-    padding: 0.5em;
     background-color: rgb(24,24,27);
-    justify-content: center;
     border-bottom: 2px solid black;
   }
-  input {
-    background-color: rgb(58,58,61);
-    color: rgb(108,108,110);
-    padding: 0.5em;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: Roobert, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    border: 1px solid black;
-    border-top-left-radius: 0.5em;
-    border-bottom-left-radius: 0.5em;
+  .menu > div {
+    padding: 10px;
+    padding-bottom: 7px;
+    border-bottom: 3px solid transparent;
   }
-  input:focus {
-    border-color: lime;
-    outline: none
+  .menu > div:hover {
+    cursor: pointer;
+    color: green;
   }
-  button {
-    background-color: rgb(41,41,44);
-    border: 1px solid black;
-    border-left: none;
-    border-top-right-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-    padding: 0.5em;
-    padding-right: 0.75em;
+  .selected {
+    color: green;
+    border-bottom: 3px solid green;
   }
 </style>
