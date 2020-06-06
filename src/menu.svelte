@@ -1,39 +1,45 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-  import Logo from './logo.svelte'
+	import { selected } from './stores/menu-store'
 
-  const dispatch = createEventDispatcher();
-  function select(name) {
-    dispatch('select', name)
+  const menu = {
+    top: 'Top 50',
+    favourites: 'Favourites',
+    player: 'Player',
   }
-
-  export let selected = ''
 </script>
 
 <div class="menu">
   <img src="logo.png" alt="www.streamhub.gg" height="32px" />
-  <div on:click={() => dispatch('select', name)}>Top 50</div>
-  <div>Favourites</div>
-  <div>Player</div>
+  {#each Object.keys(menu) as key}
+    <div
+      class="item"
+      class:selected={key === $selected}
+      on:click={() => $selected = key}
+    >
+      {menu[key]}
+    </div>
+  {/each}
 </div>
 
 <style>
   .menu {
     display: flex;
+    padding: 5px;
+    padding-bottom: 0;
     background-color: rgb(24,24,27);
     border-bottom: 2px solid black;
   }
-  .menu > div {
+  .item {
     padding: 10px;
     padding-bottom: 7px;
     border-bottom: 3px solid transparent;
   }
-  .menu > div:hover {
+  .item:hover {
     cursor: pointer;
-    color: green;
+    color: #6CAA61;
   }
   .selected {
-    color: green;
-    border-bottom: 3px solid green;
+    color: #6CAA61;
+    border-bottom: 3px solid #6CAA61;
   }
 </style>
