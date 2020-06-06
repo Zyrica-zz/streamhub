@@ -1,16 +1,16 @@
 <script>
-  import { toggleFavourite, isFavourite } from './favourites-store'
-  import { streams } from './streams-store'
+  import { toggleFavourite, isFavourite } from './stores/favourites-store'
   import Stream from './stream.svelte'
 
   function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1)
   }
+  export let streams = []
 </script>
 
 <div class="container">
   <div class="streams">
-    {#each $streams as {source, name, viewers, avatar, id}}
+    {#each streams as {source, name, viewers, avatar, id}}
       <Stream
         isFavourite={$isFavourite(id)}
         source={source}

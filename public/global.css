@@ -8,7 +8,8 @@ body {
 	min-height: 100%;
     background-color: rgb(14,14,16);
     color: rgb(239, 239, 241);
-    font-family: Roobert, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4 {
@@ -22,7 +23,6 @@ h1, h2, h3, h4 {
 	border: 1px solid #222;
 }
 ::-webkit-scrollbar-thumb {
-	background: green;
 	background: #222;
 	border-radius: 5px;
 }

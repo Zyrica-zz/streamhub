@@ -1,6 +1,6 @@
 import { derived, readable } from 'svelte/store'
 import { get } from 'axios'
-import ga from './google-analytics'
+import ga from '../google-analytics'
 
 let setStreams
 export const streams = readable([], set => {

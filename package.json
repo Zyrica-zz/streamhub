@@ -1,6 +1,13 @@
 {
   "name": "streamhub",
-  "version": "0.0.1",
+  "scripts": {
+    "build": "rimraf /dist | npm run build:server | npm run build:client",
+    "build:server": "babel server --out-dir dist",
+    "build:client": "cross-env NODE_ENV=production webpack",
+    "dev:client": "webpack-dev-server --content-base public",
+    "dev:server": "nodemon --exec babel-node server",
+    "start": "node dist"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
@@ -19,14 +26,6 @@
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1"
-  },
-  "scripts": {
-    "build": "rimraf /dist | npm run build:server | npm run build:client",
-    "build:server": "babel server --out-dir dist",
-    "build:client": "cross-env NODE_ENV=production webpack",
-    "dev:client": "webpack-dev-server --content-base public",
-    "dev:server": "nodemon --exec babel-node server",
-    "start": "node dist"
   },
   "dependencies": {
     "axios": "^0.19.2",

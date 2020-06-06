@@ -1,39 +1,45 @@
 <script>
+	import { selected } from './stores/menu-store'
+
+  const menu = {
+    top: 'Top 50',
+    favourites: 'Favourites',
+    player: 'Player',
+  }
 </script>
 
 <div class="menu">
+  <img src="logo.png" alt="www.streamhub.gg" height="32px" />
+  {#each Object.keys(menu) as key}
+    <div
+      class="item"
+      class:selected={key === $selected}
+      on:click={() => $selected = key}
+    >
+      {menu[key]}
+    </div>
+  {/each}
 </div>
 
 <style>
   .menu {
     display: flex;
-    padding: 0.5em;
+    padding: 5px;
+    padding-bottom: 0;
     background-color: rgb(24,24,27);
-    justify-content: center;
     border-bottom: 2px solid black;
   }
-  input {
-    background-color: rgb(58,58,61);
-    color: rgb(108,108,110);
-    padding: 0.5em;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: Roobert, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    border: 1px solid black;
-    border-top-left-radius: 0.5em;
-    border-bottom-left-radius: 0.5em;
+  .item {
+    padding: 10px;
+    padding-bottom: 7px;
+    border-bottom: 3px solid transparent;
   }
-  input:focus {
-    border-color: lime;
-    outline: none
+  .item:hover {
+    cursor: pointer;
+    color: #6CAA61;
   }
-  button {
-    background-color: rgb(41,41,44);
-    border: 1px solid black;
-    border-left: none;
-    border-top-right-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-    padding: 0.5em;
-    padding-right: 0.75em;
+  .selected {
+    color: #6CAA61;
+    border-bottom: 3px solid #6CAA61;
   }
 </style>

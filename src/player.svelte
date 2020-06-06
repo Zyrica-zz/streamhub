@@ -1,6 +1,7 @@
 <script>
-	import { onMount, afterUpdate } from 'svelte';
-  import { favoriteIds, favorites } from './favourites-store'
+	import { onMount, afterUpdate, tick } from 'svelte'
+  import { favoriteIds, favorites } from './stores/favourites-store'
+  import { selected } from './stores/menu-store'
 
   const ratio = 1920/1080
   let minHeight = 300
@@ -10,16 +11,18 @@
   $: height = width/ratio
 
   let container
-  function setWidth() {
-    const { clientWidth } = container
-    const columns = Math.floor(clientWidth/minWidth)
-    width = Math.floor(clientWidth / columns) -1
-    console.log('setting width', width)
+  async function setWidth() {
+	  if (!container) return
+    await tick()
+    let { clientWidth } = container
+    let columns = Math.floor(clientWidth/minWidth)
+    if (columns < 1) columns = 1
+    width = Math.floor(clientWidth / columns) - 1
   }
-  onMount(setWidth);
-  afterUpdate(setWidth);
+  selected.subscribe(setWidth)
+  onMount(setWidth)
+  afterUpdate(setWidth)
   window.addEventListener('resize', setWidth)
-
 </script>
 
 <div class="container" bind:this={container}>
