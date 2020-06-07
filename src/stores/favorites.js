@@ -1,7 +1,7 @@
 import { derived, readable } from 'svelte/store'
-import { streams } from './streams-store'
+import { streams } from 'stores/streams'
 
-const key = 'favourites'
+const key = 'favorites'
 
 const fav = loadFromLocalStorage()
 
@@ -13,7 +13,7 @@ export const favoriteIds = readable([...fav], set => {
   }
 })
 
-export function toggleFavourite(id) {
+export function toggleFavorite(id) {
   if (fav.has(id)) {
     fav.delete(id)
   } else {
@@ -29,7 +29,7 @@ export const favorites = derived(
     .filter(fav => fav)
 )
 
-export const isFavourite = derived(
+export const isFavorite = derived(
   favoriteIds,
   () => id => fav.has(id)
 )

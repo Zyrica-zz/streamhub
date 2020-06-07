@@ -1,7 +1,7 @@
 <script>
 	import { onMount, afterUpdate, tick } from 'svelte'
-  import { favoriteIds, favorites } from './stores/favourites-store'
-  import { selected } from './stores/menu-store'
+  import { favoriteIds, favorites } from 'stores/favorites'
+  import { selected } from 'stores/menu'
 
   const ratio = 1920/1080
   let minHeight = 300

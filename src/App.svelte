@@ -1,13 +1,13 @@
 <script>
-  import { selected } from './stores/menu-store'
-  import { isFavourite } from './stores/favourites-store'
-  import { streams } from './stores/streams-store'
+  import { selected } from 'stores/menu'
+  import { isFavorite } from 'stores/favorites'
+  import { streams } from 'stores/streams'
   import Streams from './streams.svelte'
   import Player from './player.svelte'
   import Menu from './menu.svelte'
 
   $: filteredStreams = $streams.filter(({id}) => {
-    let i = $selected !== 'favourites' || $isFavourite(id)
+    let i = $selected !== 'favorites' || $isFavorite(id)
     return i
   })
 </script>

@@ -1,5 +1,5 @@
 <script>
-  import { toggleFavourite, isFavourite } from './stores/favourites-store'
+  import { toggleFavorite, isFavorite } from 'stores/favorites'
   import Stream from './stream.svelte'
 
   function capitalize(str) {
@@ -12,12 +12,12 @@
   <div class="streams">
     {#each streams as {source, name, viewers, avatar, id}}
       <Stream
-        isFavourite={$isFavourite(id)}
+        isFavorite={$isFavorite(id)}
         source={source}
         name={name}
         viewers={viewers}
         avatar={avatar}
-        on:click={toggleFavourite(id)}
+        on:click={toggleFavorite(id)}
       />
     {/each}
   </div>
