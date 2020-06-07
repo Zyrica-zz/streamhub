@@ -7,7 +7,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let isFavourite = false
+  export let isFavorite = false
   export let source
   export let avatar
   export let name
@@ -16,7 +16,7 @@
 
 <div
   class="stream"
-  class:favourite="{isFavourite}"
+  class:favorite="{isFavorite}"
   on:click={() => dispatch('click')}
 >
   <div class="source">
@@ -47,7 +47,7 @@
       background-color: rgb(42,42,48);
     }
   }
-  .favourite {
+  .favorite {
     background-color: rgb(28,28,32);
   }
   .stream > div {

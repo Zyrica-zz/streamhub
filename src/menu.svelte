@@ -1,9 +1,9 @@
 <script>
-	import { selected } from './stores/menu-store'
+	import { selected } from 'stores/menu'
 
   const menu = {
     top: 'Top 50',
-    favourites: 'Favourites',
+    favorites: 'Favorites',
     player: 'Player',
   }
 </script>
