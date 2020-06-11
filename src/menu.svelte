@@ -38,6 +38,9 @@
     cursor: pointer;
     color: #6CAA61;
   }
+  img {
+    margin-right: 5px;
+  }
   .selected {
     color: #6CAA61;
     border-bottom: 3px solid #6CAA61;
