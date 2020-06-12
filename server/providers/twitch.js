@@ -14,6 +14,7 @@ export default async function getStreams() {
   console.log('Twitch', 'Get streams')
   const url = `https://api.twitch.tv/kraken/streams?limit=50`
   const { data }= await get(url, config)
+  //console.log(data.streams)
   streams = data.streams.map(({channel, viewers})=> {
     return {
       source: 'twitch',

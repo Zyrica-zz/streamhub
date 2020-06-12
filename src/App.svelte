@@ -5,6 +5,7 @@
   import Streams from './streams.svelte'
   import Player from './player.svelte'
   import Menu from './menu.svelte'
+  import Happening from './happening.svelte'
 
   $: filteredStreams = $streams.filter(({id}) => {
     let i = $selected !== 'favorites' || $isFavorite(id)
@@ -15,10 +16,16 @@
 <div class="container">
   <Menu />
   <div class="content">
-    {#if $selected !== 'player'}
+    {#if $selected === 'editorial'}
+      <Happening />
+    {:else if $selected !== 'player'}
       <Streams streams={filteredStreams} />
+      <Player />
+    {:else}
+      <Player />
     {/if}
-    <Player />
+    
+    
   </div>
 </div>
 
