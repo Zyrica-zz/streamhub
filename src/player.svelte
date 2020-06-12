@@ -3,11 +3,14 @@
   import { favoriteIds, favorites } from 'stores/favorites'
   import { selected } from 'stores/menu'
 
+
+  const domainName = window.location.hostname;
+
   const ratio = 1920/1080
   let minHeight = 300
   let minWidth = minHeight*ratio
 
-  let width = minWidth
+   let width = minWidth
   $: height = width/ratio
 
   let container
@@ -23,6 +26,7 @@
   onMount(setWidth)
   afterUpdate(setWidth)
   window.addEventListener('resize', setWidth)
+
 </script>
 
 <div class="container" bind:this={container}>
@@ -34,7 +38,7 @@
       {#if source === 'twitch'}
         <iframe
           title={name}
-          src="https://player.twitch.tv/?channel={name}&muted=true"
+          src="https://player.twitch.tv/?channel={name}&muted=true&parent={domainName}"
           height={height}
           width={width}
         />
