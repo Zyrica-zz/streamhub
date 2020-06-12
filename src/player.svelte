@@ -41,6 +41,7 @@
           src="https://player.twitch.tv/?channel={name}&muted=true&parent={domainName}"
           height={height}
           width={width}
+          allowfullscreen=true
         />
       {:else if source === 'youtube'}
         <iframe
