@@ -1,46 +1,29 @@
-import get from "axios";
+import get from "axios"
 import dotenv from 'dotenv'
+import mediumJSONFeed from 'medium-json-feed'
 dotenv.config()
 
 const config = {
 	'mediumUser': '@jojdal'
 }
 
-const mediumJSONFeed = require('medium-json-feed');
-
-let posts = []
-let fixedPosts = []
-function parsePosts(response) {
-	for(var i=0;i<response.length;i++) {
-		var post = {}
-		post.id = response[i].id;
-		post.title = response[i].title;
-		post.tags = response[i].virtuals.tags;
-		post.paragraphs = response[i].previewContent2.bodyModel.paragraphs
-		post.latestPublishedAt = response[i].latestPublishedAt;
-  		posts.push(post);
-
-  		console.log(post)
-
-  	}; 
-	//console.log(response[0].previewContent2.bodyModel.paragraphs)
-	//console.log(posts);
+function parsePost(post) {
+	return {
+		id: post.id,
+		title: post.title,
+		tags: post.virtuals.tags,
+		paragraphs: post.previewContent2.bodyModel.paragraphs,
+		latestPublishedAt: post.latestPublishedAt
+	}
 }
-
-
-function getFixedPosts() {
-	return posts;
+function byLatest(postA, postB) {
+	return postB.latestPublishedAt - postA.latestPublishedAt
 }
-
 
 export default async function getPosts() {
   console.log('Getting medium posts')
-  let result
-
-  mediumJSONFeed(config.mediumUser)
-  	.then(data => fixedPosts = parsePosts(data.response))
-  	
- 	return getFixedPosts();
+  const { response } = await mediumJSONFeed(config.mediumUser)
+	return response.map(parsePost).sort(byLatest)
 }
 
 

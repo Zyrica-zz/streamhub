@@ -1,8 +1,16 @@
 import { derived, readable } from 'svelte/store'
+import { get } from "axios";
 
 const key = 'editorials'
 
 const fav = loadFromLocalStorage()
+
+
+async function getEditorials() {
+  const { data } = await get('/api/editorial')
+  console.log('Editorials', data)
+}
+getEditorials()
 
 let save
 export const editorialIds = readable([...fav], set => {

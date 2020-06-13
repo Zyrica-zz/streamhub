@@ -13,29 +13,24 @@ function byViewers(a, b) {
   return b.viewers - a.viewers
 }
 
-    
-const editorialCache = { 
-  getMedium: createCache(medium, oneMinute),
-  getAll: () => [
-    ...editorialCache.getMedium()
-  ]
-}
-
 const cache = {
   getTwitch: createCache(twitch, oneMinute),
   getYoutube: createCache(youtube, 5*oneMinute),
   getMixer: createCache(mixer, oneMinute),
-  getAll: () => [
+  getMedium: createCache(medium, oneMinute),
+  getAllStreams: () => [
     ...cache.getTwitch(),
     ...cache.getYoutube(),
     ...cache.getMixer()
   ].sort(byViewers)
 }
 
-
+router.get('/editorial', (req, res) => {
+  res.send(cache.getMedium())
+})
 
 router.use('*', (req, res) => {
-  res.send(cache.getAll(), editorialCache.getAll())
+  res.send(cache.getAllStreams())
 })
 
 export default router
