@@ -3,38 +3,16 @@ import { get } from "axios";
 
 const key = 'editorials'
 
-const fav = loadFromLocalStorage()
-
-
-
-async function getEditorials() {
-  console.log("HERERER")
-  const { data } = await get('/api/editorial')
-  console.log('Editorials', data)
-}
-getEditorials()
-
-let save
-export const editorialIds = readable([...fav], set => {
-  save = () => {
-    saveToLocalStorage()
-    set([...fav])
-  }
+let setMediumPosts
+export const mediumPosts = readable([], set => {
+  setMediumPosts = set
 })
 
-export function toggleFavorite(id) {
-  if (fav.has(id)) {
-    fav.delete(id)
-  } else {
-    fav.add(id)
-  }
-  save()
+async function getMediumPosts() {
+  const { data } = await get('/api/editorial')
+  console.log('Editorials', data)
+  setMediumPosts(data)
 }
 
-function saveToLocalStorage() {
-  localStorage.setItem(key, JSON.stringify([...fav]))
-}
-function loadFromLocalStorage() {
-  let json = localStorage.getItem(key)
-  return  new Set(json ? JSON.parse(json) : [])
-}
+getMediumPosts()
+setInterval(getMediumPosts, 300*1000)

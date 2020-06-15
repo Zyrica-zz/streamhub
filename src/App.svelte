@@ -2,6 +2,7 @@
   import { selected } from 'stores/menu'
   import { isFavorite } from 'stores/favorites'
   import { streams } from 'stores/streams'
+  import { mediumPosts } from 'stores/editorial'
   import Streams from './streams.svelte'
   import Player from './player.svelte'
   import Menu from './menu.svelte'

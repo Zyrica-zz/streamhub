@@ -21,7 +21,7 @@ const cache = {
   getAllStreams: () => [
     ...cache.getTwitch(),
     ...cache.getYoutube(),
-    ...cache.getMixer()
+    ...cache.getMixer(),
   ].sort(byViewers)
 }
 

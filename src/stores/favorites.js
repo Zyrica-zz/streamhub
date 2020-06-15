@@ -13,6 +13,10 @@ export const favoriteIds = readable([...fav], set => {
   }
 })
 
+
+
+
+
 export function toggleFavorite(id) {
   if (fav.has(id)) {
     fav.delete(id)

@@ -1,15 +1,16 @@
 <script>
   import { onMount, afterUpdate, tick } from 'svelte'
-  import { editorialIds } from 'stores/editorial'
-  import { selected } from 'stores/menu'
-
+  //import { mediumPosts } from 'stores/editorial'
+  
+  export let mediumPosts = []
 </script>
 
 <div class="container">
-  
-    hej: 
+    hola
+    {#each mediumPosts as mp}
+      hej
+    {/each}
 
-  
 </div>
 
 <style>
