@@ -8,6 +8,7 @@ const config = {
 }
 
 function parsePost(post) {
+	console.log(post)
 	return {
 		id: post.id,
 		title: post.title,
@@ -27,4 +28,3 @@ export default async function getPosts() {
 }
 
 
-//.then(data => console.log(data))

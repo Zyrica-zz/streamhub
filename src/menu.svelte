@@ -5,7 +5,7 @@
     top: 'Top 50',
     favorites: 'Favorites',
     player: 'Player',
-    editorial: 'Happening'
+    editorial: 'News'
   }
 </script>
 

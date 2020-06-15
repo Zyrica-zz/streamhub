@@ -6,7 +6,7 @@
   import Streams from './streams.svelte'
   import Player from './player.svelte'
   import Menu from './menu.svelte'
-  import Happening from './happening.svelte'
+  import Happening from './editorial.svelte'
 
   $: filteredStreams = $streams.filter(({id}) => {
     let i = $selected !== 'favorites' || $isFavorite(id)
