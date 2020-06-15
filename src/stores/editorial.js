@@ -6,7 +6,9 @@ const key = 'editorials'
 const fav = loadFromLocalStorage()
 
 
+
 async function getEditorials() {
+  console.log("HERERER")
   const { data } = await get('/api/editorial')
   console.log('Editorials', data)
 }

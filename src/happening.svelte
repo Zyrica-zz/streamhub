@@ -1,12 +1,15 @@
 <script>
   import { onMount, afterUpdate, tick } from 'svelte'
-  import { favoriteIds, favorites } from 'stores/editorial'
+  import { editorialIds } from 'stores/editorial'
   import { selected } from 'stores/menu'
 
 </script>
 
 <div class="container">
-  hej
+  
+    hej: 
+
+  
 </div>
 
 <style>
