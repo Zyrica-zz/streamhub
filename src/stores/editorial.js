@@ -7,7 +7,7 @@ let setMediumPosts
 export const mediumPosts = readable([], set => {
   setMediumPosts = set
 })
-
+mediumPosts.subscribe(() => {})
 
 /*function setMediumPosts(data) {
 	mediumPosts = data;
@@ -16,12 +16,9 @@ export const mediumPosts = readable([], set => {
 async function getMediumPosts() {
   const { data } = await get('/api/editorial')
   console.log('Editorials', data)
-  if(setMediumPosts !== undefined) {
-  	console.log("HOSDHOSIH")
-  	setMediumPosts(data)	
-  }
-  
+  setMediumPosts(data)	
 }
+
 
 getMediumPosts()
 setInterval(getMediumPosts, 300*1000)

@@ -1,13 +1,11 @@
 <script>
   import { onMount, afterUpdate, tick } from 'svelte'
-  //import { mediumPosts } from 'stores/editorial'
+  import { mediumPosts } from 'stores/editorial'
   
-  export let mediumPosts = []
 </script>
 
 <div class="container">
-    hola
-    {#each mediumPosts as mp}
+    {#each $mediumPosts as mp}
       hej
     {/each}
 
