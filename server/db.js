@@ -14,7 +14,7 @@ const options = { useNewUrlParser: true, useUnifiedTopology: true }
 const client = new MongoClient(url, options)
 
 let db
-const connected = client.connect();
+export const connected = client.connect();
 
 // Init
 (async () => {
@@ -22,11 +22,12 @@ const connected = client.connect();
   db = client.db(process.env.mongodb_database)
 })()
 
-export function collection(collection) {
-  return db.collection(collection)
+export async function getStreamers() {
+  return await db.collection('streamers').find({}).toArray()
 }
 
-export async function getStreamers() {
+export async function saveStreamers(streamers) {
   await connected
-  return await db.collection('streamers').find({}).toArray()
+  console.log('saving', { streamers })
+  await db.collection('streamers').insertMany(streamers)
 }
