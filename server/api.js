@@ -3,7 +3,7 @@ import createCache from './cache'
 import twitch from './providers/twitch'
 import youtube from './providers/youtube'
 import mixer from './providers/mixer'
-import { collection } from './db'
+import { getStreamers } from './db'
 
 const router =  new Router()
 
@@ -22,11 +22,13 @@ const cache = {
     ...cache.getYoutube(),
     ...cache.getMixer()
   ].sort(byViewers)
-}
+};
+(async () => {
+  const streamers = await getStreamers()
+  console.log({ streamers })
+})()
 
 router.use('*', async (req, res) => {
-  const streamers = await collection('streamers').find({}).toArray()
-  console.log({ streamers })
   res.send(cache.getAll())
 })
 

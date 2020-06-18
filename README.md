@@ -183,3 +183,7 @@ https://dev.mixer.com/rest/index.html
   }
   ~~~
 </details>
+
+# Resources
+- [Svelte](https://svelte.dev/examples)
+- [MongoDB Api](https://mongodb.github.io/node-mongodb-native/3.6/api/)
