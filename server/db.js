@@ -18,8 +18,7 @@ let db
 // Init
 (async () => {
   await client.connect()
-  console.log('here')
-  db = client.db('development') // fix for production?
+  db = client.db(process.env.mongodb_database)
 })()
 
 export function collection(collection) {

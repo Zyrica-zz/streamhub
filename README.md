@@ -12,6 +12,10 @@ The frontend dev server uses a proxy to route:
 ## Variables
 - [twitch_client_id](https://dev.twitch.tv/console/apps)
 - [youtube_api_key](https://console.cloud.google.com/apis/credentials?project=substreams)
+- [mongodb_user](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
+- [mongodb_password](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
+- [mongodb_cluster](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
+- [mongodb_database](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
 
 
 # Providers
