@@ -3,7 +3,7 @@ import createCache from './cache'
 import twitch from './providers/twitch'
 import youtube from './providers/youtube'
 import mixer from './providers/mixer'
-import { connected, getStreamers, saveStreamers } from './db'
+import { addStreamers, connected, getStreamers } from './db';
 
 const router =  new Router()
 
@@ -13,25 +13,33 @@ function byViewers(a, b) {
   return b.viewers - a.viewers
 }
 
-const cache = {
-  getTwitch: createCache(twitch, oneMinute),
-  getYoutube: createCache(youtube, 5*oneMinute),
-  getMixer: createCache(mixer, oneMinute),
-  getAll: () => [
-    ...cache.getTwitch(),
-    ...cache.getYoutube(),
-    ...cache.getMixer()
-  ].sort(byViewers)
-};
-(async () => {
+let streamers = connected
+;(async () => {
   await connected
-  const streamers = await getStreamers()
-  console.log({ streamers })
-  await saveStreamers([{ test: 'test' }, { test: 'test2' }])
+  streamers = await getStreamers()
+  streamers.sort(byViewers)
+  const streamerMap = {}
+  streamers.forEach(s => {
+    const key = s.source + '_' + s.id
+    streamerMap[key] = s
+  })
+  const t = twitch()
+  const y = youtube()
+  const m = mixer()
+
+  const newStreamers = [
+    ...await t,
+    ...await y,
+    ...await m
+  ].filter(s => !streamerMap[s.source + '_' + s.id])
+  if (newStreamers.length) {
+    console.log(`Adding ${newStreamers.length} new streamers`)
+    addStreamers(newStreamers)
+  }
 })()
 
 router.use('*', async (req, res) => {
-  res.send(cache.getAll())
+  res.send(streamers)
 })
 
 export default router

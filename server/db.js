@@ -26,8 +26,7 @@ export async function getStreamers() {
   return await db.collection('streamers').find({}).toArray()
 }
 
-export async function saveStreamers(streamers) {
+export async function addStreamers(streamers) {
   await connected
-  console.log('saving', { streamers })
   await db.collection('streamers').insertMany(streamers)
 }
