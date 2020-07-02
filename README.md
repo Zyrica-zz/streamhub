@@ -188,3 +188,4 @@ https://dev.mixer.com/rest/index.html
 # Resources
 - [Svelte](https://svelte.dev/examples)
 - [MongoDB Api](https://mongodb.github.io/node-mongodb-native/3.6/api/)
+- [Redis](https://redis.io/commands#hash)

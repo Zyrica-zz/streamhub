@@ -1,4 +1,5 @@
 import get from 'axios'
+import redis from '../redis'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -11,7 +12,7 @@ const config = {
 
 const url = `https://api.twitch.tv/kraken/streams?limit=100`
 
-const isTwitch = s => s.source === 'twitch'
+export const isTwitch = s => s.source === 'twitch'
 
 function parseStream(stream) {
   const { channel, viewers } = stream
@@ -43,9 +44,13 @@ export async function checkOnline(streamers) {
 }
 
 let streams = []
-export default async function getStreams() {
+export async function getStreams() {
   console.log('Twitch', 'Get streams')
   const { data } = await get(url, config)
   streams = data.streams.map(parseStream)
   return streams
+}
+
+export default {
+  redis: redis('twitch')
 }

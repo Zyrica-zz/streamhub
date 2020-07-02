@@ -10,28 +10,27 @@ const client = redis.createClient(url)
 
 // const get = promisify(client.get).bind(client)
 // const set = promisify(client.set).bind(client)
+// const flushall = promisify(client.flushall).bind(client)
 
 const hmset = promisify(client.hmset).bind(client)
 const hmget = promisify(client.hmget).bind(client)
+const hgetall = promisify(client.hgetall).bind(client)
 
-/*
-  check: timestamp
-  viewers: int
-  online: bool
- */
-
-function update(outdated) {
-  // change name
-  checkOnline(outdated)
-}
-
-export async function setOnline(streamers) {
-  const online = await hmget('streamers', streamers.map(s => ''+s._id))
-  const outdated = []
-  for (let i=0 ; i < streamers.length ; i++) {
-    if (!online[i]) {
-      outdated.push(streamers[i])
-    }
+export default function(key) {
+  const get = async keys => {
+    const strings = await (keys ? hmget(key, keys) : hgetall(key))
+    Object.keys(strings).forEach(name => {
+      strings[name] = JSON.parse(strings[name])
+    })
+    return strings
   }
-  update(outdated)
+  const set = obj => {
+    const array = []
+    Object.keys(obj).forEach(field => {
+      array.push(field)
+      array.push(JSON.stringify(obj[field]))
+    })
+    hmset(key, array)
+  }
+  return { get, set }
 }
