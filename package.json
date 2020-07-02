@@ -6,6 +6,8 @@
     "build:client": "cross-env NODE_ENV=production webpack",
     "dev:client": "webpack-dev-server --content-base public",
     "dev:server": "nodemon --exec babel-node server",
+    "s": "npm run dev:server",
+    "c": "npm run dev:client",
     "start": "node dist"
   },
   "devDependencies": {
@@ -31,6 +33,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^3.5.9"
+    "mongodb": "^3.5.9",
+    "redis": "^3.0.2"
   }
 }

@@ -1,13 +1,12 @@
 import { Router } from 'express'
-import createCache from './cache'
 import twitch from './providers/twitch'
 import youtube from './providers/youtube'
 import mixer from './providers/mixer'
 import { addStreamers, connected, getStreamers } from './db';
 
-const router =  new Router()
+require('./redis')
 
-const oneMinute = 60*1000
+const router =  new Router()
 
 function byViewers(a, b) {
   return b.viewers - a.viewers
@@ -37,6 +36,7 @@ let streamers = connected
     addStreamers(newStreamers)
   }
 })()
+
 
 router.use('*', async (req, res) => {
   res.send(streamers)

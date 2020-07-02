@@ -9,14 +9,15 @@ The frontend dev server uses a proxy to route:
 # Environment variables
 - Create a `.env` file in root dir
 - Each line represent a environment variable with the following syntaax `variable=value`
+
 ## Variables
 - [twitch_client_id](https://dev.twitch.tv/console/apps)
 - [youtube_api_key](https://console.cloud.google.com/apis/credentials?project=substreams)
+- [redis_cloud_url](https://app.redislabs.com/#/bdb/tabs/metrics/9817631)
 - [mongodb_user](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
 - [mongodb_password](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
 - [mongodb_cluster](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
 - [mongodb_database](https://cloud.mongodb.com/v2/5ee225b3a1921a373d8e2b98#clusters)
-
 
 # Providers
 
