@@ -3,8 +3,7 @@ import twitch from './providers/twitch'
 import youtube from './providers/youtube'
 import mixer from './providers/mixer'
 import { addStreamers, connected, getStreamers } from './db';
-
-require('./redis')
+import { setOnline } from './redis'
 
 const router =  new Router()
 
@@ -35,6 +34,7 @@ let streamers = connected
     console.log(`Adding ${newStreamers.length} new streamers`)
     addStreamers(newStreamers)
   }
+  setOnline(streamers)
 })()
 
 

@@ -9,19 +9,43 @@ const config = {
   }
 }
 
+const url = `https://api.twitch.tv/kraken/streams?limit=100`
+
+const isTwitch = s => s.source === 'twitch'
+
+function parseStream(stream) {
+  const { channel, viewers } = stream
+  return {
+    source: 'twitch',
+    name: channel.name,
+    viewers,
+    avatar: channel.logo,
+    id: channel._id,
+  }
+}
+
+const limit = 100
+// change name
+export async function checkOnline(streamers) {
+  const twitchStreamers = streamers.filter(isTwitch)
+  const ids = [...twitchStreamers.map(s => s.id)]
+  const promises = []
+  while(ids.length) {
+    const channels = ids.splice(0, limit).join()
+    promises.push(get(url+'&channel='+channels, config))
+  }
+  const chunks = await Promise.all(promises)
+  let streams = []
+  chunks.forEach(chunk => {
+    streams = streams.concat(chunk.data.streams.map(parseStream))
+  })
+  return streams
+}
+
 let streams = []
 export default async function getStreams() {
   console.log('Twitch', 'Get streams')
-  const url = `https://api.twitch.tv/kraken/streams?limit=50`
-  const { data }= await get(url, config)
-  streams = data.streams.map(({channel, viewers})=> {
-    return {
-      source: 'twitch',
-      name: channel.name,
-      viewers,
-      avatar: channel.logo,
-      id: channel._id,
-    }
-  })
+  const { data } = await get(url, config)
+  streams = data.streams.map(parseStream)
   return streams
 }
