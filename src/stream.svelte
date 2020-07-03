@@ -12,6 +12,7 @@
   export let avatar
   export let name
   export let viewers
+  export let online
 </script>
 
 <div
@@ -29,7 +30,7 @@
     {name}
   </div>
   <div class="viewers">
-    <span>{viewers}</span>
+    <span>{ online ? viewers : '-' }</span>
   </div>
 </div>
 

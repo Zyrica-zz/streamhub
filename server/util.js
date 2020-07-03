@@ -1,4 +1,6 @@
-export default function createCache(getter, duration) {
+export const getNow = () => new Date().getTime()
+
+export function createCache(getter, duration) {
   let data = []
   let lastCall = new Date().getTime()
 

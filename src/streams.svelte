@@ -10,12 +10,13 @@
 
 <div class="container">
   <div class="streams">
-    {#each streams as {source, name, viewers, avatar, id}}
+    {#each streams as {source, name, viewers, avatar, id, online}}
       <Stream
         isFavorite={$isFavorite(id)}
         source={source}
         name={name}
         viewers={viewers}
+        online={online}
         avatar={avatar}
         on:click={toggleFavorite(id)}
       />
